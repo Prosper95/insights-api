@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import 'fetch';
 import 'babel/browser-polyfill';
 import * as es6Promise from 'es6-promise';
@@ -5,6 +6,8 @@ import URI from 'urijs';
 
 es6Promise.polyfill();
 
+=======
+>>>>>>> Stashed changes
 function checkStatus(response) {
     console.log('Checking status');
     console.log(response);
@@ -39,6 +42,7 @@ export function init(root) {
          *
          */
         getSettings: function() {
+<<<<<<< Updated upstream
             var myHeaders = new Headers();
             myHeaders.append('Accept', 'text/plain');
             myHeaders.append('Accept', 'application/json');
@@ -64,6 +68,12 @@ export function init(root) {
             }).then(function (response) {
                 return response.json();
             });
+=======
+            return fetch(_url.toString(), {credentials: 'same-origin'})
+                .then(checkStatus)
+                .then(parseJSON)
+                .catch(handleError);
+>>>>>>> Stashed changes
         },
 
         /**
