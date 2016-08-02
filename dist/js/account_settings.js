@@ -7,21 +7,21 @@ exports.init = init;
 
 require('fetch');
 
-require('babel/browser-polyfill');
-
-var _es6Promise = require('es6-promise');
-
-var es6Promise = _interopRequireWildcard(_es6Promise);
-
 var _urijs = require('urijs');
 
 var _urijs2 = _interopRequireDefault(_urijs);
 
+var _bluebird = require('bluebird');
+
+var _bluebird2 = _interopRequireDefault(_bluebird);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+//import 'babel/browser-polyfill';
+//import * as es6Promise from 'es6-promise';
+fetch.Promise = _bluebird2.default;
 
-es6Promise.polyfill();
+//es6Promise.polyfill();
 
 function checkStatus(response) {
     console.log('Checking status');
@@ -72,7 +72,7 @@ function init(root) {
                 console.log('Checking status');
                 console.log(response);
                 if (response.status >= 200 && response.status < 300) {
-                    return Promise.resolve(response);
+                    return _bluebird2.default.resolve(response);
                 } else {
                     var error = new Error(response.statusText);
                     error.response = response;

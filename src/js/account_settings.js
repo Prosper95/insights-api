@@ -1,9 +1,11 @@
 import 'fetch';
-import 'babel/browser-polyfill';
-import * as es6Promise from 'es6-promise';
+//import 'babel/browser-polyfill';
+//import * as es6Promise from 'es6-promise';
 import URI from 'urijs';
+import Promise from 'bluebird';
+fetch.Promise = Promise;
 
-es6Promise.polyfill();
+//es6Promise.polyfill();
 
 function checkStatus(response) {
     console.log('Checking status');
