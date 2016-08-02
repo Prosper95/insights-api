@@ -9,15 +9,15 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
-    return response.json().then(function (json) {
-    	return {
-    		data: json
-    	};
-    });
+    return response.json();
+}
+
+function formatJSON(json) {
+  return {
+    data: json
+  };
 }
 
 function handleError(error) {
     console.log('request faild', error);
 }
-
-export {checkStatus, parseJSON, handleError};

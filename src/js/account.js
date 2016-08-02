@@ -24,9 +24,9 @@ export function Account() {
 			return fetch(_url.toString(), {
 				credentials: 'same-origin'
 			})
-				.then(handlers.checkStatus)
-                .then(handlers.parseJSON)
-                .catch(handlers.handleError);
+				.then(checkStatus)
+                .then(parseJSON)
+                .catch(handleError);
 		}
 	}
 }

@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.handleError = exports.parseJSON = exports.checkStatus = undefined;
 exports.Account = Account;
 exports.init = init;
 
@@ -50,31 +49,10 @@ function Account() {
 
             return fetch(_url.toString(), {
                 credentials: 'same-origin'
-            }).then(handlers.checkStatus).then(handlers.parseJSON).catch(handlers.handleError);
+            }).then(checkStatus).then(parseJSON).catch(handleError);
         }
     };
 }
-function checkStatus(response) {
-    console.log('Checking status');
-    console.log(response);
-    if (response.status >= 200 && response.status < 300) {
-        return response;
-    } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-    }
-}
-
-function parseJSON(response) {
-    console.log('Parsing json');
-    return response.json();
-}
-
-function handleError(error) {
-    console.log('request failed', error);
-}
-
 /**
  *
  */
@@ -137,17 +115,15 @@ function checkStatus(response) {
 }
 
 function parseJSON(response) {
-    return response.json().then(function (json) {
-        return {
-            data: json
-        };
-    });
+    return response.json();
+}
+
+function formatJSON(json) {
+    return {
+        data: json
+    };
 }
 
 function handleError(error) {
     console.log('request faild', error);
 }
-
-exports.checkStatus = checkStatus;
-exports.parseJSON = parseJSON;
-exports.handleError = handleError;
